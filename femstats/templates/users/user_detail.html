@@ -12,6 +12,8 @@
       <h2>{{ object.username }}</h2>
       {% if object.name %}
         <p>{{ object.name }}</p>
+        <p>Age: {{ user.age }}</p>
+        <p>Weight: {{ user.weight }}</p>
       {% endif %}
     </div>
   </div>
@@ -21,7 +23,7 @@
 <div class="row">
 
   <div class="col-sm-12 ">
-    <a class="btn btn-primary" href="{% url 'users:update' %}">My Info</a>
+    <a class="btn btn-primary" href="{% url 'users:update' %}">Update Profile</a>
     <a class="btn btn-primary" href="{% url 'account_email' %}">E-Mail</a>
     <!-- Your Stuff: Custom user template urls -->
   </div>
