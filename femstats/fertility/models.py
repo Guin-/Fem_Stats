@@ -10,13 +10,14 @@ class Period(models.Model):
     HEAVY = 'H'
     FLOW_CHOICES = (
         (SPOTTING, 'Spotting'),
-        (LIGHT, 'Light')
+        (LIGHT, 'Light'),
         (MEDIUM, 'Medium'),
         (HEAVY, 'Heavy'),
     )
     user = models.ForeignKey(User)
     date = models.DateField('Date')
-    flow = models.Charfield(choices=FLOW_CHOICES,
+    flow = models.CharField(max_length=10,
+                            choices=FLOW_CHOICES,
                             default=SPOTTING)
 
     def __unicode__(self):
@@ -40,18 +41,18 @@ class BasalBodyTemp(models.Model):
     def __unicode__(self):
         return self.temperature
 
-class cervical(models.model):
+class cervical(models.Model):
     pass
 '''
-    user = models.foreignkey(user)
-    date = models.datefield('date')
-    fluid = models.charfield(choices=fluid_choices,
+    user = models.ForeignKey(user)
+    date = models.DateField('date')
+    fluid = models.CharField(choices=fluid_choices,
                                       default=none)
-    position = models.charfield(choices=position_choices,
+    position = models.CharField(choices=position_choices,
                                 default=high)
-    texture = models.charfield(choices=texture_choices,
+    texture = models.CharField(choices=texture_choices,
                                default=firm)
-    opening = models.charfield(choices=opening_choices,
+    opening = models.CharField(choices=opening_choices,
                                default=open)
 
 '''
