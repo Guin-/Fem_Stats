@@ -1,7 +1,6 @@
 from django.db import models
 from femstats.users.models import User
-
-# Create your models here.
+import datetime
 
 class Period(models.Model):
     SPOTTING ='SP'
@@ -14,8 +13,8 @@ class Period(models.Model):
         (MEDIUM, 'Medium'),
         (HEAVY, 'Heavy'),
     )
-    user = models.ForeignKey(User)
-    date = models.DateField('Date')
+    user = models.ForeignKey(User, null=True)
+    date = models.DateField('Date', default=datetime.date.today)
     flow = models.CharField(max_length=10,
                             choices=FLOW_CHOICES,
                             default=SPOTTING)
@@ -30,8 +29,8 @@ class BasalBodyTemp(models.Model):
         (FAHRENHEIT, 'Fahrenheit'),
         (CELSIUS, 'Celsius'),
     )
-    user = models.ForeignKey(User)
-    date = models.DateField('Date')
+    user = models.ForeignKey(User, null=True)
+    date = models.DateField('Date', default=datetime.date.today)
     time = models.TimeField('Time')
     temperature = models.PositiveSmallIntegerField()
     scale = models.CharField(max_length=1,
@@ -41,18 +40,64 @@ class BasalBodyTemp(models.Model):
     def __unicode__(self):
         return self.temperature
 
-class cervical(models.Model):
-    pass
-'''
-    user = models.ForeignKey(user)
-    date = models.DateField('date')
-    fluid = models.CharField(choices=fluid_choices,
-                                      default=none)
-    position = models.CharField(choices=position_choices,
-                                default=high)
-    texture = models.CharField(choices=texture_choices,
-                               default=firm)
-    opening = models.CharField(choices=opening_choices,
-                               default=open)
+class Cervical(models.Model):
+    DRY = 'D'
+    STICKY = 'S'
+    CREAMY = 'C'
+    WATERY = 'W'
+    EGG_WHITE = 'EW'
 
-'''
+    MUCUS_CHOICES = (
+        (DRY, 'Dry'),
+        (STICKY, 'Sticky'),
+        (CREAMY, 'Creamy'),
+        (WATERY, 'Watery'),
+        (EGG_WHITE, 'Egg White'),
+    )
+
+    LOW = 'LW'
+    MEDIUM = 'MD'
+    HIGH = "HI"
+
+    POSITION_CHOICES = (
+        (LOW, 'Low'),
+        (MEDIUM, 'Medium'),
+        (HIGH, 'High'),
+    )
+
+    SOFT = 'ST'
+    FIRM = 'FM'
+
+    TEXTURE_CHOICES = (
+        (SOFT,'Soft'),
+        (MEDIUM, 'Medium'),
+        (FIRM, 'Firm'),
+    )
+
+    OPEN = 'Open'
+    CLOSED = 'Closed'
+
+    OPENING_CHOICES = (
+        (OPEN, 'Open'),
+        (MEDIUM, 'Medium'),
+        (CLOSED, 'Closed')
+    )
+    user = models.ForeignKey(User, null=True)
+    date = models.DateField('Date', default=datetime.date.today)
+    mucus = models.CharField(max_length=10,
+                             choices=MUCUS_CHOICES,
+                             default=DRY)
+    position = models.CharField(max_length=10,
+                                choices=POSITION_CHOICES,
+                                default=HIGH)
+    texture = models.CharField(max_length=10,
+                               choices=TEXTURE_CHOICES,
+                               default=FIRM)
+    opening = models.CharField(max_length=10,
+                               choices=OPENING_CHOICES,
+                               default=OPEN)
+
+    def __unicode__(self):
+        return self.position
+
+
