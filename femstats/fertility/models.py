@@ -1,6 +1,9 @@
 from django.db import models
-from femstats.users.models import User
+from django.core.urlresolvers import reverse
+
 import datetime
+
+from femstats.users.models import User
 
 class Period(models.Model):
     SPOTTING ='SP'
@@ -21,6 +24,9 @@ class Period(models.Model):
 
     def __unicode__(self):
         return self.flow
+
+    def get_absolute_url(self):
+        return reverse('fertility:period', kwargs={'pk': self.pk})
 
 class BasalBodyTemp(models.Model):
     FAHRENHEIT = 'F'

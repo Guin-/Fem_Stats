@@ -6,13 +6,10 @@
 
 <div class="container">
 
-    <h2>Period History</h2>
-    {{ request.user }}
-    {% if period_list %}
-        {% for period in period_list %}
+    <h2>Period Detail</h2>
+
         <p>Date: {{ period.date }} Flow: {{ period.flow }}</p>
-        {% endfor %}
-    {% endif %}
+
 </div>
 
 {% endblock content %}
