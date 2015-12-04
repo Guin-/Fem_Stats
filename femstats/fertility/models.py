@@ -16,7 +16,7 @@ class Period(models.Model):
         (MEDIUM, 'Medium'),
         (HEAVY, 'Heavy'),
     )
-    user = models.ForeignKey(User, null=True)
+    user = models.ForeignKey(User)
     date = models.DateField('Date', default=datetime.date.today)
     flow = models.CharField(max_length=10,
                             choices=FLOW_CHOICES,
@@ -35,7 +35,7 @@ class BasalBodyTemp(models.Model):
         (FAHRENHEIT, 'Fahrenheit'),
         (CELSIUS, 'Celsius'),
     )
-    user = models.ForeignKey(User, null=True)
+    user = models.ForeignKey(User)
     date = models.DateField('Date', default=datetime.date.today)
     time = models.TimeField('Time')
     temperature = models.PositiveSmallIntegerField()
@@ -88,7 +88,7 @@ class Cervical(models.Model):
         (MEDIUM, 'Medium'),
         (CLOSED, 'Closed')
     )
-    user = models.ForeignKey(User, null=True)
+    user = models.ForeignKey(User)
     date = models.DateField('Date', default=datetime.date.today)
     mucus = models.CharField(max_length=10,
                              choices=MUCUS_CHOICES,
