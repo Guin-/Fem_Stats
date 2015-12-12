@@ -42,4 +42,4 @@ class PeriodDetail(LoginRequiredMixin, DetailView):
 
 class PeriodDelete(LoginRequiredMixin, DeleteView):
     model = Period
-
+    success_url = reverse_lazy('fertility:periods')

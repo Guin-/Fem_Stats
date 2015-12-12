@@ -23,4 +23,10 @@ urlpatterns = [
         view=views.PeriodDetail.as_view(),
         name='period'
     ),
+    url(
+        regex=r'^period/(?P<pk>\d+)/delete/$',
+        view=views.PeriodDelete.as_view(),
+        name='period_delete'
+    ),
 ]
+
