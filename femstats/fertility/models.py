@@ -1,6 +1,9 @@
 from django.db import models
-from femstats.users.models import User
+from django.core.urlresolvers import reverse
+
 import datetime
+
+from femstats.users.models import User
 
 class Period(models.Model):
     SPOTTING ='SP'
@@ -13,7 +16,7 @@ class Period(models.Model):
         (MEDIUM, 'Medium'),
         (HEAVY, 'Heavy'),
     )
-    user = models.ForeignKey(User, null=True)
+    user = models.ForeignKey(User)
     date = models.DateField('Date', default=datetime.date.today)
     flow = models.CharField(max_length=10,
                             choices=FLOW_CHOICES,
@@ -22,6 +25,9 @@ class Period(models.Model):
     def __unicode__(self):
         return self.flow
 
+    def get_absolute_url(self):
+        return reverse('fertility:period', kwargs={'pk': self.pk})
+
 class BasalBodyTemp(models.Model):
     FAHRENHEIT = 'F'
     CELSIUS = 'C'
@@ -29,7 +35,7 @@ class BasalBodyTemp(models.Model):
         (FAHRENHEIT, 'Fahrenheit'),
         (CELSIUS, 'Celsius'),
     )
-    user = models.ForeignKey(User, null=True)
+    user = models.ForeignKey(User)
     date = models.DateField('Date', default=datetime.date.today)
     time = models.TimeField('Time')
     temperature = models.PositiveSmallIntegerField()
@@ -82,7 +88,7 @@ class Cervical(models.Model):
         (MEDIUM, 'Medium'),
         (CLOSED, 'Closed')
     )
-    user = models.ForeignKey(User, null=True)
+    user = models.ForeignKey(User)
     date = models.DateField('Date', default=datetime.date.today)
     mucus = models.CharField(max_length=10,
                              choices=MUCUS_CHOICES,

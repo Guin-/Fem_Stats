@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}{% load i18n %}
+{% block title %}Period History{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <h2>Period Detail</h2>
+
+        <p>Date: {{ period.date }} Flow: {{ period.flow }}</p>
+
+</div>
+
+{% endblock content %}
+

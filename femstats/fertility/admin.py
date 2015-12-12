@@ -1,3 +1,7 @@
 from django.contrib import admin
+from femstats.fertility.models import Period
 
-# Register your models here.
+class PeriodAdmin(admin.ModelAdmin):
+    list_display = ('user','date','flow')
+
+admin.site.register(Period, PeriodAdmin)
