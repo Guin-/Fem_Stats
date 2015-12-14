@@ -4,7 +4,7 @@ from django.core.urlresolvers import reverse_lazy
 from braces.views import LoginRequiredMixin
 
 from femstats.fertility.models import Period
-from femstats.fertility.forms import PeriodForm
+from femstats.fertility.forms import PeriodForm, FertilityMultiForm
 
 class PeriodsList(LoginRequiredMixin, ListView):
     model = Period
@@ -43,3 +43,15 @@ class PeriodDetail(LoginRequiredMixin, DetailView):
 class PeriodDelete(LoginRequiredMixin, DeleteView):
     model = Period
     success_url = reverse_lazy('fertility:periods')
+
+class FertilityCreate(LoginRequiredMixin, CreateView):
+    form_class = FertilityMultiForm
+
+class FertilityUpdate(LoginRequiredMixin, UpdateView):
+    pass
+
+class FertilityDetail(LoginRequiredMixin, DetailView):
+    pass
+
+class FertilityDelete(LoginRequiredMixin, DeleteView):
+    pass
