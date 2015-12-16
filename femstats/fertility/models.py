@@ -1,6 +1,6 @@
 from django.db import models
 from django.core.urlresolvers import reverse
-
+from django.utils import timezone
 import datetime
 
 from femstats.users.models import User
@@ -37,8 +37,8 @@ class BasalBodyTemp(models.Model):
     )
     user = models.ForeignKey(User)
     date = models.DateField('Date', default=datetime.date.today)
-    time = models.TimeField('Time')
-    temperature = models.PositiveSmallIntegerField()
+    time = models.TimeField('Time', default=timezone.now)
+    temperature = models.DecimalField(max_digits=6, decimal_places=2)
     scale = models.CharField(max_length=1,
                              choices=TEMPERATURE_SCALE_CHOICES,
                              default=FAHRENHEIT)

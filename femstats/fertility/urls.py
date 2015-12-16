@@ -28,5 +28,25 @@ urlpatterns = [
         view=views.PeriodDelete.as_view(),
         name='period_delete'
     ),
+    url(
+        regex=r'^add/$',
+        view=views.FertilityCreate.as_view(),
+        name='fertility_create'
+    ),
+    url(
+        regex=r'^update/(?P<pk>\d+)$',
+        view=views.FertilityUpdate.as_view(),
+        name='fertility_update'
+    ),
+    url(
+        regex=r'^(?P<pk>\d+)$',
+        view=views.FertilityDetail.as_view(),
+        name='fertility'
+    ),
+    url(
+        regex=r'^(?P<pk>\d+)/delete/$',
+        view=views.FertilityDelete.as_view(),
+        name='fertility_delete'
+    ),
 ]
 
