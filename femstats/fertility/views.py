@@ -46,12 +46,26 @@ class PeriodDelete(LoginRequiredMixin, DeleteView):
 
 class FertilityCreate(LoginRequiredMixin, CreateView):
     form_class = FertilityMultiForm
+    template_name = "fertility/fertility_form.html"
+
+# override get_context_data to get the current user? then do form validation
+#    def form_valid(self, form):
+#        obj = form.save(commit=False)
+#        obj.user = self.request.user
+#        obj.save()
+#        return super(FertilityCreate, self).form_valid(form)
 
 class FertilityUpdate(LoginRequiredMixin, UpdateView):
-    pass
+    form_class = FertilityMultiForm
+    template_name = "fertility/fertility_form.html"
 
 class FertilityDetail(LoginRequiredMixin, DetailView):
-    pass
+    template_name = "fertility/fertility_detail.html"
 
 class FertilityDelete(LoginRequiredMixin, DeleteView):
     pass
+
+class FertilityList(LoginRequiredMixin, ListView):
+    pass
+
+

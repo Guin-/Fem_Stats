@@ -16,10 +16,25 @@ class BasalBodyTempForm(ModelForm):
 class CervicalForm(ModelForm):
     class Meta:
         model = Cervical
-        fields = ['date', 'mucus', 'position', 'texture', 'opening']
+        fields = ['mucus', 'position', 'texture', 'opening']
 
 class FertilityMultiForm(MultiModelForm):
     form_classes = {
         'BasalBodyTemp': BasalBodyTempForm,
         'Cervical': CervicalForm,
     }
+
+    def save(self, commit=True):
+        objects = super(FertilityMultiForm, self).save(commit=False)
+
+        if commit:
+            BasalBodyTemp = objects['BasalBodyTemp']
+            Cervical = objects['Cervical']
+#            BasalBodyTemp.user = self.request.user
+#            Cervical.user = self.request.user
+            BasalBodyTemp.save()
+            Cervical.save()
+
+        return objects
+
+
