@@ -4,7 +4,7 @@ from django.core.urlresolvers import reverse_lazy
 from braces.views import LoginRequiredMixin
 
 from femstats.fertility.models import Period
-from femstats.fertility.forms import PeriodForm, FertilityMultiForm
+from femstats.fertility.forms import PeriodForm, FertilityForm
 
 class PeriodsList(LoginRequiredMixin, ListView):
     model = Period
@@ -45,18 +45,11 @@ class PeriodDelete(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy('fertility:periods')
 
 class FertilityCreate(LoginRequiredMixin, CreateView):
-    form_class = FertilityMultiForm
+    form_class = FertilityForm
     template_name = "fertility/fertility_form.html"
 
-# override get_context_data to get the current user? then do form validation
-#    def form_valid(self, form):
-#        obj = form.save(commit=False)
-#        obj.user = self.request.user
-#        obj.save()
-#        return super(FertilityCreate, self).form_valid(form)
-
 class FertilityUpdate(LoginRequiredMixin, UpdateView):
-    form_class = FertilityMultiForm
+    form_class = FertilityForm
     template_name = "fertility/fertility_form.html"
 
 class FertilityDetail(LoginRequiredMixin, DetailView):

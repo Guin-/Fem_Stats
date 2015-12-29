@@ -28,25 +28,15 @@ class Period(models.Model):
     def get_absolute_url(self):
         return reverse('fertility:period', kwargs={'pk': self.pk})
 
-class BasalBodyTemp(models.Model):
+class Fertility(models.Model):
     FAHRENHEIT = 'F'
     CELSIUS = 'C'
+
     TEMPERATURE_SCALE_CHOICES = (
         (FAHRENHEIT, 'Fahrenheit'),
         (CELSIUS, 'Celsius'),
     )
-    user = models.ForeignKey(User)
-    date = models.DateField('Date', default=datetime.date.today)
-    time = models.TimeField('Time', default=timezone.now)
-    temperature = models.DecimalField(max_digits=6, decimal_places=2)
-    scale = models.CharField(max_length=1,
-                             choices=TEMPERATURE_SCALE_CHOICES,
-                             default=FAHRENHEIT)
 
-    def __unicode__(self):
-        return self.temperature
-
-class Cervical(models.Model):
     DRY = 'D'
     STICKY = 'S'
     CREAMY = 'C'
@@ -88,20 +78,21 @@ class Cervical(models.Model):
         (MEDIUM, 'Medium'),
         (CLOSED, 'Closed')
     )
+
     user = models.ForeignKey(User)
     date = models.DateField('Date', default=datetime.date.today)
+    time = models.TimeField('Time', default=timezone.now)
+    temperature = models.DecimalField(max_digits=6, decimal_places=2)
+    scale = models.CharField(max_length=1,
+                             choices=TEMPERATURE_SCALE_CHOICES)
     mucus = models.CharField(max_length=10,
-                             choices=MUCUS_CHOICES,
-                             default=DRY)
+                             choices=MUCUS_CHOICES)
     position = models.CharField(max_length=10,
-                                choices=POSITION_CHOICES,
-                                default=HIGH)
+                                choices=POSITION_CHOICES)
     texture = models.CharField(max_length=10,
-                               choices=TEXTURE_CHOICES,
-                               default=FIRM)
+                               choices=TEXTURE_CHOICES)
     opening = models.CharField(max_length=10,
-                               choices=OPENING_CHOICES,
-                               default=OPEN)
+                               choices=OPENING_CHOICES)
 
     def __unicode__(self):
         return self.position
