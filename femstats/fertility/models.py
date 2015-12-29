@@ -6,10 +6,10 @@ import datetime
 from femstats.users.models import User
 
 class Period(models.Model):
-    SPOTTING ='SP'
-    LIGHT = 'L'
-    MEDIUM = 'M'
-    HEAVY = 'H'
+    SPOTTING ='Spotting'
+    LIGHT = 'Light'
+    MEDIUM = 'Medium'
+    HEAVY = 'Heavy'
     FLOW_CHOICES = (
         (SPOTTING, 'Spotting'),
         (LIGHT, 'Light'),
@@ -37,11 +37,11 @@ class Fertility(models.Model):
         (CELSIUS, 'Celsius'),
     )
 
-    DRY = 'D'
-    STICKY = 'S'
-    CREAMY = 'C'
-    WATERY = 'W'
-    EGG_WHITE = 'EW'
+    DRY = 'Dry'
+    STICKY = 'Sticky'
+    CREAMY = 'Creamy'
+    WATERY = 'Watery'
+    EGG_WHITE = 'Egg White'
 
     MUCUS_CHOICES = (
         (DRY, 'Dry'),
@@ -51,9 +51,9 @@ class Fertility(models.Model):
         (EGG_WHITE, 'Egg White'),
     )
 
-    LOW = 'LW'
-    MEDIUM = 'MD'
-    HIGH = "HI"
+    LOW = 'Low'
+    MEDIUM = 'Medium'
+    HIGH = 'High'
 
     POSITION_CHOICES = (
         (LOW, 'Low'),
@@ -61,8 +61,8 @@ class Fertility(models.Model):
         (HIGH, 'High'),
     )
 
-    SOFT = 'ST'
-    FIRM = 'FM'
+    SOFT = 'Soft'
+    FIRM = 'Firm'
 
     TEXTURE_CHOICES = (
         (SOFT,'Soft'),

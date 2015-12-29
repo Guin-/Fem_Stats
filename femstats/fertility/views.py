@@ -53,6 +53,7 @@ class FertilityCreate(LoginRequiredMixin, CreateView):
         return super(FertilityCreate, self).form_valid(form)
 
 class FertilityUpdate(LoginRequiredMixin, UpdateView):
+    model = Fertility
     form_class = FertilityForm
     template_name = "fertility/fertility_form.html"
 
