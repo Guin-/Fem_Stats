@@ -98,3 +98,6 @@ class Fertility(models.Model):
         return self.position
 
 
+    def get_absolute_url(self):
+        return reverse('fertility:fertility', kwargs={'pk': self.pk})
+

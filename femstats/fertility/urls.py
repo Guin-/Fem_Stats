@@ -48,5 +48,10 @@ urlpatterns = [
         view=views.FertilityDelete.as_view(),
         name='fertility_delete'
     ),
+    url(
+        regex=r'history/$',
+        view=views.FertilityList.as_view(),
+        name='fertility_list'
+    ),
 ]
 
