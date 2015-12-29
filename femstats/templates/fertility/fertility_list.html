@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}{% load i18n %}
+{% block title %}Fertility History{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <h2>Fertility  History</h2>
+    {{ request.user }}
+    {% if fertility_list %}
+        {% for fertility in fertility_list %}
+        <p>Date: {{ fertility.date }} Time: {{ fertility.time }}</p>
+        {% endfor %}
+    {% endif %}
+</div>
+
+{% endblock content %}
+

@@ -1,15 +1,15 @@
 from django.db import models
 from django.core.urlresolvers import reverse
-
+from django.utils import timezone
 import datetime
 
 from femstats.users.models import User
 
 class Period(models.Model):
-    SPOTTING ='SP'
-    LIGHT = 'L'
-    MEDIUM = 'M'
-    HEAVY = 'H'
+    SPOTTING ='Spotting'
+    LIGHT = 'Light'
+    MEDIUM = 'Medium'
+    HEAVY = 'Heavy'
     FLOW_CHOICES = (
         (SPOTTING, 'Spotting'),
         (LIGHT, 'Light'),
@@ -28,30 +28,20 @@ class Period(models.Model):
     def get_absolute_url(self):
         return reverse('fertility:period', kwargs={'pk': self.pk})
 
-class BasalBodyTemp(models.Model):
+class Fertility(models.Model):
     FAHRENHEIT = 'F'
     CELSIUS = 'C'
+
     TEMPERATURE_SCALE_CHOICES = (
         (FAHRENHEIT, 'Fahrenheit'),
         (CELSIUS, 'Celsius'),
     )
-    user = models.ForeignKey(User)
-    date = models.DateField('Date', default=datetime.date.today)
-    time = models.TimeField('Time')
-    temperature = models.PositiveSmallIntegerField()
-    scale = models.CharField(max_length=1,
-                             choices=TEMPERATURE_SCALE_CHOICES,
-                             default=FAHRENHEIT)
 
-    def __unicode__(self):
-        return self.temperature
-
-class Cervical(models.Model):
-    DRY = 'D'
-    STICKY = 'S'
-    CREAMY = 'C'
-    WATERY = 'W'
-    EGG_WHITE = 'EW'
+    DRY = 'Dry'
+    STICKY = 'Sticky'
+    CREAMY = 'Creamy'
+    WATERY = 'Watery'
+    EGG_WHITE = 'Egg White'
 
     MUCUS_CHOICES = (
         (DRY, 'Dry'),
@@ -61,9 +51,9 @@ class Cervical(models.Model):
         (EGG_WHITE, 'Egg White'),
     )
 
-    LOW = 'LW'
-    MEDIUM = 'MD'
-    HIGH = "HI"
+    LOW = 'Low'
+    MEDIUM = 'Medium'
+    HIGH = 'High'
 
     POSITION_CHOICES = (
         (LOW, 'Low'),
@@ -71,8 +61,8 @@ class Cervical(models.Model):
         (HIGH, 'High'),
     )
 
-    SOFT = 'ST'
-    FIRM = 'FM'
+    SOFT = 'Soft'
+    FIRM = 'Firm'
 
     TEXTURE_CHOICES = (
         (SOFT,'Soft'),
@@ -88,22 +78,26 @@ class Cervical(models.Model):
         (MEDIUM, 'Medium'),
         (CLOSED, 'Closed')
     )
+
     user = models.ForeignKey(User)
     date = models.DateField('Date', default=datetime.date.today)
+    time = models.TimeField('Time', default=timezone.now)
+    temperature = models.DecimalField(max_digits=6, decimal_places=2)
+    scale = models.CharField(max_length=1,
+                             choices=TEMPERATURE_SCALE_CHOICES)
     mucus = models.CharField(max_length=10,
-                             choices=MUCUS_CHOICES,
-                             default=DRY)
+                             choices=MUCUS_CHOICES)
     position = models.CharField(max_length=10,
-                                choices=POSITION_CHOICES,
-                                default=HIGH)
+                                choices=POSITION_CHOICES)
     texture = models.CharField(max_length=10,
-                               choices=TEXTURE_CHOICES,
-                               default=FIRM)
+                               choices=TEXTURE_CHOICES)
     opening = models.CharField(max_length=10,
-                               choices=OPENING_CHOICES,
-                               default=OPEN)
+                               choices=OPENING_CHOICES)
 
     def __unicode__(self):
         return self.position
 
+
+    def get_absolute_url(self):
+        return reverse('fertility:fertility', kwargs={'pk': self.pk})
 

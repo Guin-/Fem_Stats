@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}{% load i18n %}
+{% block title %}Fertility Data{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <h2>Fertility Detail</h2>
+
+    <p>Date: {{ fertility.date }}</p>
+    <p>Time: {{ fertility.time }}</p>
+    <p>Basal Body Temperature: {{ fertility.temperature }}</p>
+    <p>Cervix Info:: {{ fertility.mucus }}, {{ fertility.texture }}, 
+    {{ fertility.position }}, {{ fertility.opening }}</p>
+</div>
+
+{% endblock content %}
+

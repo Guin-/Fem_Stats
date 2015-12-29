@@ -3,8 +3,8 @@ from django.core.urlresolvers import reverse_lazy
 
 from braces.views import LoginRequiredMixin
 
-from femstats.fertility.models import Period
-from femstats.fertility.forms import PeriodForm
+from femstats.fertility.models import Period, Fertility
+from femstats.fertility.forms import PeriodForm, FertilityForm
 
 class PeriodsList(LoginRequiredMixin, ListView):
     model = Period
@@ -43,3 +43,38 @@ class PeriodDetail(LoginRequiredMixin, DetailView):
 class PeriodDelete(LoginRequiredMixin, DeleteView):
     model = Period
     success_url = reverse_lazy('fertility:periods')
+
+class FertilityCreate(LoginRequiredMixin, CreateView):
+    form_class = FertilityForm
+    template_name = "fertility/fertility_form.html"
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(FertilityCreate, self).form_valid(form)
+
+class FertilityUpdate(LoginRequiredMixin, UpdateView):
+    model = Fertility
+    form_class = FertilityForm
+    template_name = "fertility/fertility_form.html"
+
+class FertilityDetail(LoginRequiredMixin, DetailView):
+    model = Fertility
+    template_name = "fertility/fertility_detail.html"
+    context_object_name = "fertility"
+
+class FertilityDelete(LoginRequiredMixin, DeleteView):
+    model = Fertility
+    success_url = reverse_lazy('fertility:fertility_list')
+
+class FertilityList(LoginRequiredMixin, ListView):
+    model = Fertility
+    template_name = "fertility/fertility_list.html"
+    context_object_name = 'fertility_list'
+
+    def get_queryset(self):
+        '''
+        Filter data to display entries from the currently logged in user
+        '''
+        return Fertility.objects.filter(user = self.request.user)
+
+
