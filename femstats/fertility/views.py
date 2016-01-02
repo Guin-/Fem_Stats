@@ -1,5 +1,6 @@
 from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
+from django.core.exceptions import PermissionDenied
 
 from braces.views import LoginRequiredMixin
 
@@ -35,6 +36,16 @@ class PeriodUpdate(LoginRequiredMixin, UpdateView):
     template_name = "fertility/period_form.html"
     form_class = PeriodForm
 
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+    # Ensure that users can not view or update an object
+    # that does not match the currently logged in user
+    # and display the forbidden page
+        if self.object.user != request.user:
+            raise PermissionDenied
+        else:
+            return super(PeriodUpdate, self).get(request, *args, **kwargs)
+
 class PeriodDetail(LoginRequiredMixin, DetailView):
     model = Period
     template_name = "fertility/period_detail.html"
@@ -56,6 +67,17 @@ class FertilityUpdate(LoginRequiredMixin, UpdateView):
     model = Fertility
     form_class = FertilityForm
     template_name = "fertility/fertility_form.html"
+
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+    # Ensure that users can not view or update an object
+    # that does not match the currently logged in user
+    # and display the forbidden page
+        if self.object.user != request.user:
+            raise PermissionDenied
+        else:
+            return super(FertilityUpdate, self).get(request, *args, **kwargs)
+
 
 class FertilityDetail(LoginRequiredMixin, DetailView):
     model = Fertility
