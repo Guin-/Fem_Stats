@@ -20,7 +20,7 @@ urlpatterns = [
     url(r'^users/', include("femstats.users.urls", namespace="users")),
     url(r'^accounts/', include('allauth.urls')),
 
-    # Your stuff: custom urls includes go here
+    # Fertility App
     url(r'^fertility/', include("femstats.fertility.urls", namespace="fertility")),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
