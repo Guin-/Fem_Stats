@@ -9,7 +9,6 @@
     <h2>Fertility  History</h2>
 
     <div class="list-group">
-    {{ request.user }}
     {% if fertility_list %}
         {% for fertility in fertility_list %}
         <a href="{% url 'fertility:fertility' fertility.id %}" class="list-group-item">
