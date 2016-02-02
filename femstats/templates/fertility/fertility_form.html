@@ -3,8 +3,10 @@
 {% block title %}Add Fertility Info{% endblock %}
 
 {% block content %}
-
-<div class="container">
+<div class="form-title">
+    <h3>Log Your Daily Fertility Data</h3>
+</div>
+<div class="form-container">
     <form method="post" action="">
         {% csrf_token %}
         <div class="row">

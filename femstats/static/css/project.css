@@ -12,6 +12,15 @@
   padding-top: 100px;
   padding-bottom: 50px; }
 
+.title {
+  padding: 50px; }
+
+.form-title {
+  padding-top: 50px; }
+
+.form-container {
+  padding: 50px; }
+
 @media (max-width: 47.9em) {
   .navbar-nav .nav-item {
     display: inline-block;
