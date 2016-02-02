@@ -7,12 +7,17 @@
 <div class="container">
 
     <h2>Fertility  History</h2>
-    {{ request.user }}
+
+    <div class="list-group">
     {% if fertility_list %}
         {% for fertility in fertility_list %}
-        <p>Date: {{ fertility.date }} Time: {{ fertility.time }}</p>
+        <a href="{% url 'fertility:fertility' fertility.id %}" class="list-group-item">
+          <h4 class="list-group-item-heading">Date: {{ fertility.date }} Time: {{ fertility.time }}</h4>
+        </a>
         {% endfor %}
     {% endif %}
+    </div>
+
 </div>
 
 {% endblock content %}
