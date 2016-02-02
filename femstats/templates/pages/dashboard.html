@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h3>{{user.username}}, welcome to your dashboard<h3>
-
+<div class="title">
+    <h3>{{user.username}}, welcome to your dashboard<h3>
+</div>
 <!-- Action buttons -->
 <div class="row">
-
-  <div class="col-sm-12 ">
+  <div class="col-md-6">
     <a class="btn btn-primary" href="{% url 'fertility:fertility_create' %}">Log Fertility</a>
     <a class="btn btn-primary" href="{% url 'fertility:period_create' %}">Log Period</a>
   </div>
