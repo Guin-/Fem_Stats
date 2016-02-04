@@ -28,6 +28,18 @@ $red: #b94a48;
     padding-top: 100px;
     padding-bottom: 50px;
 }
+
+.title {
+    padding: 50px 0;
+}
+
+.form-title {
+    padding-top: 50px;
+}
+
+.form-container {
+    padding: 50px;
+}
 // This is a fix for the bootstrap4 alpha release
 
 @media (max-width: 47.9em) {

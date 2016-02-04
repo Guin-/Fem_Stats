@@ -4,13 +4,17 @@
 
 {% block content %}
 
+<div class=title>
+    <h2>Period History</h2>
+</div>
 <div class="container">
 
-    <h2>Period History</h2>
-    {{ request.user }}
+    <div class="list-group">
     {% if period_list %}
         {% for period in period_list %}
-        <p>Date: {{ period.date }} Flow: {{ period.flow }}</p>
+        <a href="{% url 'fertility:period' period.id %}" class="list-group-item">
+          <h4 class="list-group-item-heading">Date: {{ period.date }} Flow: {{ period.flow }}</h4>
+        </a>
         {% endfor %}
     {% endif %}
 </div>
