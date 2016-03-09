@@ -28,6 +28,9 @@ DJANGO_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # Django Rest Framework
+    'rest_framework',
+
     # Useful template tags:
     # 'django.contrib.humanize',
 
@@ -46,11 +49,20 @@ THIRD_PARTY_APPS = (
 LOCAL_APPS = (
     'femstats.users',  # custom users app
     'femstats.fertility',
-    # Your stuff: custom apps go here
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
+
+# DRF CONFIGURATION
+# ------------------------------------------------------------------------------
+REST_FRAMEWORK = {
+    # Use Django's standard 'django.contrib.auth' permissions,
+    # or allow read only access for unauthenticated users
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
 
 # MIDDLEWARE CONFIGURATION
 # ------------------------------------------------------------------------------
