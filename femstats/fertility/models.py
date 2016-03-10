@@ -19,8 +19,7 @@ class Period(models.Model):
     user = models.ForeignKey(User)
     date = models.DateField('Date', default=datetime.date.today)
     flow = models.CharField(max_length=10,
-                            choices=FLOW_CHOICES,
-                            default=SPOTTING)
+                            choices=FLOW_CHOICES)
 
     def __unicode__(self):
         return self.flow
@@ -82,17 +81,18 @@ class Fertility(models.Model):
     user = models.ForeignKey(User)
     date = models.DateField('Date', default=datetime.date.today)
     time = models.TimeField('Time', default=timezone.now)
-    temperature = models.DecimalField(max_digits=6, decimal_places=2)
+    temperature = models.DecimalField(max_digits=6, decimal_places=2,
+                                      null=True, blank=True)
     scale = models.CharField(max_length=1,
-                             choices=TEMPERATURE_SCALE_CHOICES)
+                             choices=TEMPERATURE_SCALE_CHOICES, blank=True)
     mucus = models.CharField(max_length=10,
-                             choices=MUCUS_CHOICES)
+                             choices=MUCUS_CHOICES, blank=True)
     position = models.CharField(max_length=10,
-                                choices=POSITION_CHOICES)
+                                choices=POSITION_CHOICES, blank=True)
     texture = models.CharField(max_length=10,
-                               choices=TEXTURE_CHOICES)
+                               choices=TEXTURE_CHOICES, blank=True)
     opening = models.CharField(max_length=10,
-                               choices=OPENING_CHOICES)
+                               choices=OPENING_CHOICES, blank=True)
 
     def __unicode__(self):
         return self.position
