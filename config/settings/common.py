@@ -49,6 +49,7 @@ THIRD_PARTY_APPS = (
 LOCAL_APPS = (
     'femstats.users',  # custom users app
     'femstats.fertility',
+    'femstats.core',
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
