@@ -50,6 +50,7 @@ LOCAL_APPS = (
     'femstats.users',  # custom users app
     'femstats.fertility',
     'femstats.core',
+    'femstats.health',
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
