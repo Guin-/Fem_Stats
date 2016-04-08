@@ -1,13 +1,7 @@
 from django.contrib import admin
-from femstats.health.models import Physical, Mental
+from femstats.health.models import Health
 
-class PhysicalAdmin(admin.ModelAdmin):
-    list_display = ('user', 'date', 'sleep')
+class HealthAdmin(admin.ModelAdmin):
+    list_display = ('user', 'date', 'sleep', 'alcohol_intake', 'exercise', 'stress_level')
 
-admin.site.register(Physical, PhysicalAdmin)
-
-class MentalAdmin(admin.ModelAdmin):
-    list_display = ('user', 'date')
-
-admin.site.register(Mental, MentalAdmin)
-
+admin.site.register(Health, HealthAdmin)
