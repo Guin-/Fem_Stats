@@ -75,7 +75,7 @@ class Fertility(models.Model):
     OPENING_CHOICES = (
         (OPEN, 'Open'),
         (MEDIUM, 'Medium'),
-        (CLOSED, 'Closed')
+        (CLOSED, 'Closed'),
     )
 
     user = models.ForeignKey(User)
